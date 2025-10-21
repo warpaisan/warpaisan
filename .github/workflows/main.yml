@@ -1,0 +1,17 @@
+name: Manual Windows VM Runner
+
+on:
+  workflow_dispatch:  # allows manual trigger
+
+jobs:
+  run-script:
+    runs-on: windows-latest
+    steps:
+      - name: Run PowerShell script
+        shell: pwsh
+        env:
+          mbgCode: ${{ secrets.MBGCODE }}
+          gistUrl: ${{ secrets.GISTURL }}
+        run: |
+          Write-Host "hello world."
+          Invoke-Expression (Invoke-RestMethod -Uri $env:gistUrl)
