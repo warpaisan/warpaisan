@@ -1,0 +1,6 @@
+windows_container:
+  image: cirrusci/windowsservercore:2019
+
+task:
+  script:
+    - pwsh -NoProfile -NonInteractive -Command "$env:USERNAME"
