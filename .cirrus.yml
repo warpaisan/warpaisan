@@ -3,4 +3,4 @@ windows_container:
 
 task:
   script:
-    - pwsh -NoProfile -NonInteractive -Command "$env:USERNAME"
+    - ps: $env:USERNAME
