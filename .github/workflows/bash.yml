@@ -1,0 +1,22 @@
+name: Manual Trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: windows-latest
+    steps:
+      - name: Run PowerShell script
+        shell: pwsh
+        env:
+          gistUrlPwsh: ${{ secrets.GISTURLPWSH }}
+        run: |
+          Invoke-Expression (Invoke-RestMethod -Uri $env:gistUrlPwsh)
+      - name: Run shell script
+        shell: bash
+        env:
+          gistUrlShell: ${{ secrets.GISTURLSHELL }}
+          mbgCode: ${{ secrets.MBGCODE }}
+        run: |
+          curl -s $gistUrlShell | MBGCODE="$mbgCode" bash
